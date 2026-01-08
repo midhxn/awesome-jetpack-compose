@@ -1,6 +1,6 @@
 # 🚀 Awesome Jetpack Compose
 
-[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d73059c/media/badge.svg)](https://github.com/sindresorhus/awesome)
+[![Awesome](https://awesome.re/badge.svg)](https://github.com/sindresorhus/awesome)
 [![Jetpack Compose](https://img.shields.io/badge/Compose-1.10%2B-4285F4?style=flat&logo=android&logoColor=white)](https://developer.android.com/jetpack/compose)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0%2B-7F52FF?style=flat&logo=kotlin&logoColor=white)](https://kotlinlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
@@ -11,6 +11,7 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 ## Table of Contents
 
 - [Getting Started](#-getting-started)
+- [Recommended Stack (2026)](#-recommended-compose-stack-2026)
 - [Compose Multiplatform (CMP)](#-compose-multiplatform-cmp)
 - [UI Components & Libraries](#-ui-components--libraries)
   - [Images & Media](#images--media)
@@ -23,15 +24,15 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
   - [Navigation](#navigation)
   - [Dependency Injection](#dependency-injection)
   - [State Management](#state-management)
+- [Clean Architecture](#-clean-architecture-with-compose)
+- [Performance & Optimization](#-performance--optimization)
 - [System Integrations](#-system-integrations)
-  - [Permissions](#permissions)
-  - [Camera & Video](#camera--video)
 - [Theming & Design](#-theming--design)
+- [Accessibility (a11y)](#-accessibility-a11y)
 - [Animations](#-animations)
 - [Data & Networking](#-data--networking)
-- [Wear OS & TV](#-wear-os--tv)
 - [Testing](#-testing)
-- [Tools & Utilities](#-tools--utilities)
+- [Build & Tooling](#-build--tooling)
 - [Sample Projects](#-sample-projects)
 - [Community](#-community)
 
@@ -46,6 +47,23 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 - [Thinking in Compose](https://developer.android.com/jetpack/compose/mental-model) - Critical reading to understand the declarative mental model.
 - [Jetpack Compose Roadmap](https://developer.android.com/jetpack/androidx/compose-roadmap) - Official roadmap of Stable, Beta, and Alpha APIs.
 - [Material 3 Design Spec](https://m3.material.io/) - The design system used by default in modern Compose.
+
+[↑ Back to Top](#table-of-contents)
+
+## 🏆 Recommended Compose Stack (2026)
+
+*A battle-tested, production-ready stack.*
+
+- **UI**: Material 3
+- **Architecture**: UDF + Clean Architecture
+- **State**: ViewModel + immutable UI state
+- **Navigation**: Navigation Compose (Type-Safe)
+- **Dependency Injection**: Hilt (Android) / Koin (KMP)
+- **Images**: Coil
+- **Networking**: Ktor Client
+- **Persistence**: Room (Android) / SQLDelight (KMP)
+- **Animations**: Lottie Compose
+- **Testing**: Maestro + Paparazzi + Compose UI Test
 
 [↑ Back to Top](#table-of-contents)
 
@@ -65,7 +83,7 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 
 ### Core UI
 - [Material 3 Compose](https://developer.android.com/jetpack/compose/designsystems/material3) - The standard UI library.
-- [Accompanist](https://github.com/google/accompanist) - Experimental features (Pager, Permissions, WebViews). *Note: Many parts are now in official AndroidX.*
+- [Accompanist](https://github.com/google/accompanist) - Experimental features. *Note: Many parts (Pager, Permissions) are now in official AndroidX.*
 - [Compose Icons](https://github.com/DevSrSouza/compose-icons) - FontAwesome, Feather, Tabler, and Eva icons for Compose.
 - [Telephoto](https://github.com/saket/telephoto) - Zoomable images and media viewers.
 
@@ -100,7 +118,7 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 ## 🏗 Architecture & State
 
 ### Navigation
-- [Navigation Compose](https://developer.android.com/jetpack/compose/navigation) - Official Google library. *Updated for Type Safety in 2025.*
+- [Navigation Compose](https://developer.android.com/jetpack/compose/navigation) - Includes official type-safe navigation using `@Serializable` routes and NavArgs (2025+).
 - [Decompose](https://github.com/arkivanov/Decompose) - Advanced lifecycle and navigation management, ideal for KMP.
 - [Compose Destinations](https://github.com/raamcosta/compose-destinations) - Annotation processing wrapper for type-safe navigation.
 - [Appyx](https://github.com/bumble-tech/appyx) - Model-driven navigation with gesture control (Bumble).
@@ -118,10 +136,34 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 
 [↑ Back to Top](#table-of-contents)
 
+## 🧱 Clean Architecture with Compose
+
+*Recommended architectural patterns for scalable Compose apps.*
+
+- [Unidirectional Data Flow (UDF)](https://developer.android.com/jetpack/compose/architecture#udf) – The core pattern: Events go up, State goes down.
+- [State Hoisting](https://developer.android.com/jetpack/compose/state#state-hoisting) – Moving state to common ancestors to make components reusable.
+- [ViewModel & State Holders](https://developer.android.com/topic/libraries/architecture/viewmodel) – managing UI state in a lifecycle-aware way.
+- [Side Effects](https://developer.android.com/jetpack/compose/side-effects) – Handling one-off events using `LaunchedEffect` and `rememberCoroutineScope`.
+
+[↑ Back to Top](#table-of-contents)
+
+## ⚡ Performance & Optimization
+
+*Build smooth, jank-free Compose apps.*
+
+- [Compose Layout Inspector](https://developer.android.com/jetpack/compose/tooling/layout-inspector) – Visual tool to inspect recomposition counts and skip rates.
+- [Composition Tracing](https://developer.android.com/jetpack/compose/composition-tracing) – Trace composition events in the system profiler.
+- [Stability & @Stable](https://developer.android.com/jetpack/compose/performance/stability) – Understanding how to make types stable to skip recomposition.
+- [Baseline Profiles](https://developer.android.com/topic/performance/baselineprofiles) – Generate profiles to drastically improve app startup time.
+- [Macrobenchmark](https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview) – Measure frame timing and startup performance in CI.
+- [Compose Compiler Metrics](https://github.com/androidx/androidx/blob/androidx-main/compose/compiler/design/compiler-metrics.md) – Advanced reports to check which classes are unstable.
+
+[↑ Back to Top](#table-of-contents)
+
 ## 🔗 System Integrations
 
 ### Permissions
-- [Accompanist Permissions](https://google.github.io/accompanist/permissions/) - (Or its successor) The easiest way to handle runtime permissions in Compose.
+- [Accompanist Permissions](https://google.github.io/accompanist/permissions/) - The easiest way to handle runtime permissions in Compose.
 - [KPermissions](https://github.com/NicoNicola/KPermissions) - A lightweight Kotlin library for permissions.
 
 ### Camera & Video
@@ -135,6 +177,16 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 - [Material Theme Builder](https://material-foundation.github.io/material-theme-builder/) - Generate `Theme.kt` from a seed color.
 - [Showkase](https://github.com/airbnb/Showkase) - A "Storybook" for Android; view all your `@Preview` composables in one app.
 - [Compose Shadow](https://github.com/adamglin0/compose-shadow) - Advanced custom shadows.
+
+[↑ Back to Top](#table-of-contents)
+
+## ♿ Accessibility (a11y)
+
+*Build inclusive and accessible Compose applications.*
+
+- [Semantics API](https://developer.android.com/jetpack/compose/accessibility) – How to describe your UI to accessibility services (TalkBack).
+- [Touch Target Sizes](https://developer.android.com/jetpack/compose/accessibility#touch-target) – Ensuring buttons are large enough (min 48dp).
+- [Accessibility Scanner](https://play.google.com/store/apps/details?id=com.google.android.apps.accessibility.auditor) – Google's tool to automatically scan your app for a11y issues.
 
 [↑ Back to Top](#table-of-contents)
 
@@ -156,14 +208,6 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 
 [↑ Back to Top](#table-of-contents)
 
-## ⌚ Wear OS & TV
-
-- [Compose for Wear OS](https://developer.android.com/training/wearables/compose) - Build UI for smartwatches.
-- [Horologist](https://github.com/google/horologist) - Extensions for Wear OS (Media, Volume control, etc.).
-- [Compose for TV](https://developer.android.com/training/tv/playback/compose) - Build UI for Android TV.
-
-[↑ Back to Top](#table-of-contents)
-
 ## 🧪 Testing
 
 - [Compose UI Test](https://developer.android.com/jetpack/compose/testing) - Official testing artifact.
@@ -174,12 +218,14 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 
 [↑ Back to Top](#table-of-contents)
 
-## 🛠 Tools & Utilities
+## 🏗 Build & Tooling
 
+*Modern build practices for Compose projects.*
+
+- [Version Catalogs](https://developer.android.com/build/migrate-to-catalogs) – The modern standard for managing dependencies in `libs.versions.toml`.
+- [Convention Plugins](https://developer.android.com/build/share-build-logic) – Sharing Gradle logic across multi-module projects.
+- [K2 Compiler (Kotlin 2.0)](https://kotlinlang.org/docs/whatsnew20.html) – The new, faster compiler that powers modern Compose.
 - [Relay for Figma](https://relay.material.io/) - Design-to-code handoff.
-- [Detekt Compose Rules](https://github.com/mrmans0n/compose-rules) - Static analysis to catch Compose errors (e.g. passing ViewModels down).
-- [KSP](https://github.com/google/ksp) - Faster annotation processing.
-- [Layout Inspector](https://developer.android.com/studio/debug/layout-inspector) - Built into Android Studio to debug UI hierarchies.
 
 [↑ Back to Top](#table-of-contents)
 
@@ -203,8 +249,8 @@ A curated list of resources, libraries, and tools for **Jetpack Compose**, the m
 
 ## 🤝 Contributing
 
-Contributions are welcome
+Contributions are welcome! will add guides soon.
 
 ## ⚖️ License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License. 
